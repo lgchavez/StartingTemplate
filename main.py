@@ -8,7 +8,7 @@ app = Flask(
 )
 app.config.from_object(Config)
 
-my_message = ""
+my_message = []
 def setMessage(message):
   global my_message
   my_message=message
