@@ -2,16 +2,23 @@
 <head>
   <title>Form page</title>
   <link rel="stylesheet" href="/static/app.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-  <h1>Task added</h1>
-<table>
-<tbody>
-    {% for item in my_message %}
-    <tr>
-      <td>{{item}}</td>
-    </tr>
-    {% endfor %}
-</tbody>
-</table>
+  <h1>Things to do</h1>
+  <form action="" method="post" novalidate>
+    <div>{{deleteForm.removeMessage.label }}
+    {{ deleteForm.removeMessage }}</div>
+     <!-- <div>{{ form.flag.label }} -->
+    <!-- {{ form.flag }}</div> -->
+    {{ deleteForm.delete() }}
+  </form>
+<ul>
+  {% for item in my_message %}
+    {% if item.flag %}
+       <span class="glyphicon glyphicon-flag"></span>
+    {% endif %}
+   <TABLE>{{item.message}}</TABLE>
+  {% endfor %}
+   </ul> 
 </body>

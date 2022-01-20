@@ -14,17 +14,29 @@ def setMessage(message):
   my_message.append(message)
   print(my_message)
 
+def deleteMessage(message):
+  global my_message
+  print(message)
+  my_message.remove(message)
+  print(my_message)
+
 @app.route('/', methods=['GET', 'POST'])
 def page_one():
   form = MessageForm()
   if form.is_submitted():
     print("made it")
-    setMessage(form.message.data)
+    setMessage(form.data)
     return redirect('/display')
   return render_template('pageOne.html', form=form)
 
-@app.route('/display')
+@app.route('/display', methods=['GET', 'POST'])
 def page_two():
-  return render_template('pageTwo.html', my_message=my_message)
+  deleteForm = MessageForm()
+  print('pageTwo')
+  if deleteForm.is_submitted():
+    print("about to delete")
+    deleteMessage(deleteForm.data.removeMessage)
+    return redirect('/display')
+  return render_template('pageTwo.html', my_message=my_message, deleteForm=deleteForm)
 
 app.run(host='0.0.0.0', port=8080)
