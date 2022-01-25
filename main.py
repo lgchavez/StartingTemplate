@@ -1,6 +1,7 @@
 from flask import Flask, render_template, redirect
 from form import MessageForm
 from config import Config
+from formRemove import DeleteForm
 
 app = Flask(
   'app',
@@ -25,18 +26,19 @@ def page_one():
   form = MessageForm()
   if form.is_submitted():
     print("made it")
-    setMessage(form.data)
+    setMessage(form.message.data)
     return redirect('/display')
   return render_template('pageOne.html', form=form)
 
 @app.route('/display', methods=['GET', 'POST'])
 def page_two():
-  deleteForm = MessageForm()
+  print('loading page two')
+  formRemove = DeleteForm()
   print('pageTwo')
-  if deleteForm.is_submitted():
+  if formRemove.is_submitted():
     print("about to delete")
-    deleteMessage(deleteForm.data.removeMessage)
+    deleteMessage(formRemove.removeMessage.data)
     return redirect('/display')
-  return render_template('pageTwo.html', my_message=my_message, deleteForm=deleteForm)
+  return render_template('pageTwo.html', my_message=my_message, formRemove=formRemove)
 
 app.run(host='0.0.0.0', port=8080)

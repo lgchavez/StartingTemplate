@@ -5,5 +5,3 @@ class MessageForm(FlaskForm):
     message = StringField('Add a task')
     submit = SubmitField('Add')
     flag = BooleanField ('important')
-    removeMessage=StringField('delete task')
-    delete = SubmitField('delete')

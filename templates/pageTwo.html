@@ -7,18 +7,16 @@
 <body>
   <h1>Things to do</h1>
   <form action="" method="post" novalidate>
-    <div>{{deleteForm.removeMessage.label }}
-    {{ deleteForm.removeMessage }}</div>
-     <!-- <div>{{ form.flag.label }} -->
-    <!-- {{ form.flag }}</div> -->
-    {{ deleteForm.delete() }}
+    {{formRemove.removeMessage.label }}
+    {{ formRemove.removeMessage }}
+    {{ formRemove.delete() }}
   </form>
 <ul>
   {% for item in my_message %}
     {% if item.flag %}
        <span class="glyphicon glyphicon-flag"></span>
     {% endif %}
-   <TABLE>{{item.message}}</TABLE>
+   <TABLE>{{item}}</TABLE>
   {% endfor %}
    </ul> 
 </body>
